@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
-export function Header() {
+export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -39,6 +39,11 @@ export function Header() {
               Contacto
             </Link>
           </li>
+          <li>
+            <Link href="/about" className="hover:text-blue-600 transition">
+              Nosotros
+            </Link>
+          </li>
         </ul>
 
         {/* MENU HAMBURGER (MOBILE) */}
@@ -69,6 +74,11 @@ export function Header() {
                 Contacto
               </Link>
             </li>
+            <li>
+              <Link href="/about" onClick={() => setMenuOpen(false)}>
+                Nosotros
+              </Link>
+          </li>
           </ul>
         </div>
       )}
