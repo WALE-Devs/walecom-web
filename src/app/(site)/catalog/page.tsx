@@ -1,8 +1,9 @@
-import { products } from "@/data/products";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchProducts } from "@/lib/products";
 
-export default function CatalogPage() {
+export default async function CatalogPage() {
+  const products = await fetchProducts();
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
       <h1 className="text-4xl font-bold text-center mb-12">
