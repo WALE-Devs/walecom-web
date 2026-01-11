@@ -31,7 +31,7 @@ export default async function CatalogPage() {
               {product.description}
             </p>
             <p className="text-blue-600 font-bold mt-4">
-              S/. {product.price.toFixed(2)}
+              S/. {parseFloat(product.default_price).toFixed(2)}
             </p>
           </Link>
         ))}

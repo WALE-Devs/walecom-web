@@ -1,13 +1,13 @@
 // app/api/products/route.ts
 import { NextResponse } from "next/server";
-import { products } from "@/data/products";
+import { productsList } from "@/data/products_list";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const query = searchParams.get("q")?.toLowerCase() || "";
   const tag = searchParams.get("tag")?.toLowerCase() || "";
 
-  let filtered = products;
+  let filtered = productsList;
 
   // Filtro por texto (nombre o descripción)
   if (query) {

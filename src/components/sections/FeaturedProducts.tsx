@@ -1,6 +1,7 @@
-import { products } from "@/data/products";
+import { fetchProducts } from "@/lib/products";
 
-export default function FeaturedProducts() {
+export default async function FeaturedProducts() {
+  const products = await fetchProducts();
   return (
     <section className="py-16 px-6">
       <h2 className="text-3xl font-semibold mb-8 text-center">Productos Destacados</h2>
@@ -18,7 +19,7 @@ export default function FeaturedProducts() {
             <h3 className="font-medium text-lg">{product.name}</h3>
             <p className="text-gray-600 mt-2 text-sm">{product.description}</p>
             <p className="font-semibold mt-4 text-blue-600">
-              S/. {product.price.toFixed(2)}
+              S/. {parseFloat(product.default_price).toFixed(2)}
             </p>
           </div>
         ))}

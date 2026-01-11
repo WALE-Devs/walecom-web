@@ -1,14 +1,14 @@
 // app/api/products/[slug]/route.ts
 import { NextResponse } from "next/server";
-import { products } from "@/data/products";
+import { productsDetail } from "@/data/products_detail";
 
 export async function GET(
   _req: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
-  const { slug } = await params; // 👈 Esperamos la promesa
+  const { slug } = await params;
 
-  const product = products.find((p) => p.slug === slug);
+  const product = productsDetail.find((p) => p.slug === slug);
 
   if (!product) {
     return NextResponse.json({ error: "Producto no encontrado" }, { status: 404 });
