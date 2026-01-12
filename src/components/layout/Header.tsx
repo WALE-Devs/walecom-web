@@ -14,7 +14,7 @@ export default function Header() {
         {/* LOGO */}
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/icons/logo.svg" // cambia por tu logo
+            src="/foco.svg"
             alt="Logo"
             width={32}
             height={32}
