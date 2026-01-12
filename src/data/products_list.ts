@@ -1,4 +1,4 @@
-// data/products_list.ts
+// data/products.ts
 import type { ProductListItem } from "@/types/product";
 
 export const productsList: ProductListItem[] = [
@@ -56,5 +56,19 @@ export const productsList: ProductListItem[] = [
     default_stock: 0,
     image: "http://127.0.0.1:8000/media/clb_IqhHngd.jpg",
     tags: ["ropa", "chaqueta", "unisex"],
+  },
+  {
+    id: 7,
+    name: "Zapatillas Urbanas Blancas",
+    slug: "zapatillas-urbanas-blancas",
+    description:
+      "Zapatillas Blancas de diseño urbano con suela antideslizante y plantilla acolchada.",
+    base_sku: "ZUB",
+    category: null,
+    currency: "PEN",
+    default_price: "259.90",
+    default_stock: 0,
+    image: "http://127.0.0.1:8000/media/zcb1.jpeg",
+    tags: ["calzado", "urbano"],
   },
 ];

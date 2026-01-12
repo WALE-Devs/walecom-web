@@ -12,12 +12,13 @@ export const productsDetail: ProductDetail[] = [
     currency: "PEN",
     default_price: "59.90",
     default_stock: 0,
+    main_image: "http://127.0.0.1:8000/media/bte_uC46f8B.jpg",
     images: [
       {
         id: 4,
         product: 1,
         image: "http://127.0.0.1:8000/media/bte_uC46f8B.jpg",
-        is_main: true,
+        position: 0,
       },
     ],
     variants: [
@@ -27,6 +28,24 @@ export const productsDetail: ProductDetail[] = [
         sku: "BTE-DEF",
         price: "59.90",
         stock: 50,
+      },
+    ],
+    related_products: [
+      {
+        id: 2,
+        name: "Zapatilla Urbana Negra",
+        slug: "zapatilla-urbana-negra",
+        price: "199.90",
+        currency: "PEN",
+        image: "http://127.0.0.1:8000/media/zun_QUN2DQV.jpg",
+      },
+      {
+        id: 4,
+        name: "Camiseta básica blanca",
+        slug: "camiseta-basica-blanca",
+        price: "49.90",
+        currency: "PEN",
+        image: "http://127.0.0.1:8000/media/cbb_SoYFOZ8.png",
       },
     ],
     tags: ["accesorios", "eco", "bolso"],
@@ -42,18 +61,29 @@ export const productsDetail: ProductDetail[] = [
     currency: "PEN",
     default_price: "199.90",
     default_stock: 0,
+    main_image: "http://127.0.0.1:8000/media/zun_QUN2DQV.jpg",
     images: [
       {
         id: 3,
         product: 2,
         image: "http://127.0.0.1:8000/media/zun_QUN2DQV.jpg",
-        is_main: true,
+        position: 0,
       },
     ],
     variants: [
       { id: 2, name: "42", sku: "ZUN-42", price: "199.90", stock: 20 },
       { id: 3, name: "43", sku: "ZUN-43", price: "199.90", stock: 30 },
       { id: 4, name: "44", sku: "ZUN-44", price: "199.90", stock: 40 },
+    ],
+    related_products: [
+      {
+        id: 7,
+        name: "Zapatillas Urbanas Blancas",
+        slug: "zapatillas-urbanas-blancas",
+        price: "259.90",
+        currency: "PEN",
+        image: "http://127.0.0.1:8000/media/zcb1.jpeg",
+      },
     ],
     tags: ["calzado", "urbano"],
   },
@@ -68,12 +98,13 @@ export const productsDetail: ProductDetail[] = [
     currency: "PEN",
     default_price: "49.90",
     default_stock: 0,
+    main_image: "http://127.0.0.1:8000/media/cbb_SoYFOZ8.png",
     images: [
       {
         id: 2,
         product: 4,
         image: "http://127.0.0.1:8000/media/cbb_SoYFOZ8.png",
-        is_main: true,
+        position: 0,
       },
     ],
     variants: [
@@ -82,6 +113,16 @@ export const productsDetail: ProductDetail[] = [
       { id: 8, name: "M", sku: "CBB-M", price: "49.90", stock: 40 },
       { id: 9, name: "L", sku: "CBB-L", price: "49.90", stock: 40 },
       { id: 10, name: "XL", sku: "CBB-XL", price: "49.90", stock: 40 },
+    ],
+    related_products: [
+      {
+        id: 5,
+        name: "Chaqueta ligera beige",
+        slug: "chaqueta-ligera-beige",
+        price: "169.90",
+        currency: "PEN",
+        image: "http://127.0.0.1:8000/media/clb_IqhHngd.jpg",
+      },
     ],
     tags: ["ropa", "básico", "algodón"],
   },
@@ -96,12 +137,13 @@ export const productsDetail: ProductDetail[] = [
     currency: "PEN",
     default_price: "169.90",
     default_stock: 0,
+    main_image: "http://127.0.0.1:8000/media/clb_IqhHngd.jpg",
     images: [
       {
         id: 1,
         product: 5,
         image: "http://127.0.0.1:8000/media/clb_IqhHngd.jpg",
-        is_main: true,
+        position: 0,
       },
     ],
     variants: [
@@ -110,6 +152,82 @@ export const productsDetail: ProductDetail[] = [
       { id: 14, name: "L", sku: "CLB-L", price: "169.90", stock: 40 },
       { id: 15, name: "XL", sku: "CLB-XL", price: "169.90", stock: 40 },
     ],
+    related_products: [
+      {
+        id: 4,
+        name: "Camiseta básica blanca",
+        slug: "camiseta-basica-blanca",
+        price: "49.90",
+        currency: "PEN",
+        image: "http://127.0.0.1:8000/media/cbb_SoYFOZ8.png",
+      },
+    ],
     tags: ["ropa", "chaqueta", "unisex"],
+  },
+  {
+    id: 7,
+    name: "Zapatillas Urbanas Blancas",
+    slug: "zapatillas-urbanas-blancas",
+    description:
+      "Zapatillas Blancas de diseño urbano con suela antideslizante y plantilla acolchada.",
+    base_sku: "ZUB",
+    category: null,
+    currency: "PEN",
+    default_price: "259.90",
+    default_stock: 0,
+    main_image: "http://127.0.0.1:8000/media/zcb1.jpeg",
+    images: [
+      {
+        id: 5,
+        product: 7,
+        image: "http://127.0.0.1:8000/media/zcb1.jpeg",
+        position: 0,
+      },
+      {
+        id: 6,
+        product: 7,
+        image: "http://127.0.0.1:8000/media/zcb2.webp",
+        position: 1,
+      },
+      {
+        id: 7,
+        product: 7,
+        image: "http://127.0.0.1:8000/media/zcb3.webp",
+        position: 2,
+      },
+      {
+        id: 8,
+        product: 7,
+        image: "http://127.0.0.1:8000/media/zcb4.webp",
+        position: 3,
+      },
+      {
+        id: 9,
+        product: 7,
+        image: "http://127.0.0.1:8000/media/zcb5.webp",
+        position: 4,
+      },
+    ],
+    variants: [
+      { id: 17, name: "39", sku: "ZUB-39", price: "259.90", stock: 20 },
+      { id: 18, name: "40", sku: "ZUB-40", price: "259.90", stock: 30 },
+      { id: 19, name: "40.5", sku: "ZUB-405", price: "259.90", stock: 30 },
+      { id: 20, name: "41", sku: "ZUB-41", price: "259.90", stock: 30 },
+      { id: 21, name: "42", sku: "ZUB-42", price: "259.90", stock: 30 },
+      { id: 22, name: "42.5", sku: "ZUB-425", price: "259.90", stock: 30 },
+      { id: 23, name: "43", sku: "ZUB-43", price: "259.90", stock: 40 },
+      { id: 24, name: "44", sku: "ZUB-44", price: "259.90", stock: 40 },
+    ],
+    related_products: [
+      {
+        id: 2,
+        name: "Zapatilla Urbana Negra",
+        slug: "zapatilla-urbana-negra",
+        price: "199.90",
+        currency: "PEN",
+        image: "http://127.0.0.1:8000/media/zun_QUN2DQV.jpg",
+      },
+    ],
+    tags: ["calzado", "urbano"],
   },
 ];

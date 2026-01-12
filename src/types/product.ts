@@ -19,7 +19,7 @@ export interface ProductImage {
   id: number;
   product: number;
   image: string;
-  is_main: boolean;
+  position: number;
 }
 
 export interface ProductVariant {
@@ -30,7 +30,18 @@ export interface ProductVariant {
   stock: number;
 }
 
+export interface RelatedProduct {
+  id: number;
+  name: string;
+  slug: string;
+  price: string;
+  currency: string;
+  image: string;
+}
+
 export interface ProductDetail extends BaseProduct {
+  main_image: string;
   images: ProductImage[];
   variants: ProductVariant[];
+  related_products: RelatedProduct[];
 }
