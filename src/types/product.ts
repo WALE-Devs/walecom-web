@@ -1,4 +1,5 @@
-export interface BaseProduct {
+
+export interface ProductListItem {
   id: number;
   name: string;
   slug: string;
@@ -8,17 +9,16 @@ export interface BaseProduct {
   currency: string;
   default_price: string;
   default_stock: number;
+  image_path: string;
+  image_url: string;
   tags: string[];
-}
-
-export interface ProductListItem extends BaseProduct {
-  image: string;
 }
 
 export interface ProductImage {
   id: number;
   product: number;
-  image: string;
+  image_path: string;
+  image_url: string;
   position: number;
 }
 
@@ -36,12 +36,24 @@ export interface RelatedProduct {
   slug: string;
   price: string;
   currency: string;
-  image: string;
+  image_path: string;
+  image_url: string;
 }
 
-export interface ProductDetail extends BaseProduct {
-  main_image: string;
+export interface ProductDetail {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  base_sku: string;
+  category: string | null;
+  currency: string;
+  default_price: string;
+  default_stock: number;
+  main_image_path: string;
+  main_image_url: string;
   images: ProductImage[];
   variants: ProductVariant[];
   related_products: RelatedProduct[];
+  tags: string[];
 }

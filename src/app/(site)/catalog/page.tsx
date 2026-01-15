@@ -20,7 +20,7 @@ export default async function CatalogPage() {
           >
             <div className="w-full h-64 relative mb-4">
               <Image
-                src={product.image}
+                src={product.image_url}
                 alt={product.name}
                 fill
                 className="object-cover rounded-lg"

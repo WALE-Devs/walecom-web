@@ -4,26 +4,12 @@ import { productsList } from "@/data/products_list";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const query = searchParams.get("q")?.toLowerCase() || "";
-  const tag = searchParams.get("tag")?.toLowerCase() || "";
+  const tag = searchParams.get("tag");
 
-  let filtered = productsList;
-
-  // Filtro por texto (nombre o descripción)
-  if (query) {
-    filtered = filtered.filter(
-      (p) =>
-        p.name.toLowerCase().includes(query) ||
-        p.description.toLowerCase().includes(query)
-    );
-  }
-
-  // Filtro por tag
-  if (tag) {
-    filtered = filtered.filter((p) =>
-      p.tags?.some((t) => t.toLowerCase() === tag)
-    );
-  }
+  // Filtro opcional por tag (solo ejemplo)
+  const filtered = tag
+    ? productsList.filter((p) => p.tags.includes(tag))
+    : productsList;
 
   return NextResponse.json(filtered);
 }

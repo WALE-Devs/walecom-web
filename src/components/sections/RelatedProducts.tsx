@@ -22,7 +22,7 @@ export default function RelatedProducts({ related }: Props) {
           >
             <div className="relative w-full h-64 mb-4">
               <Image
-                src={p.image}
+                src={p.image_url}
                 alt={p.name}
                 fill
                 className="object-cover rounded-lg"
