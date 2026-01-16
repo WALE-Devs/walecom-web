@@ -34,7 +34,7 @@ export async function fetchProductBySlug(slug: string): Promise<ProductDetail | 
     })),
     related_products: product.related_products.map((r) => ({
       ...r,
-      image_path: getImageUrl(r.image_path),
+      image_url: getImageUrl(r.image_path),
     })),
   };
 }
