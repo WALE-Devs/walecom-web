@@ -1,4 +1,6 @@
-export async function getContactInfo() {
+import type { ContactContent } from "@/types/contact";
+
+export async function fetchContact(): Promise<ContactContent>  {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
   const res = await fetch(`${baseUrl}/api/contact`, {

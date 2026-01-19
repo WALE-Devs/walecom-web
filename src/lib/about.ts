@@ -1,12 +1,11 @@
-export async function getAboutInfo() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+import type { AboutContent } from "@/types/about";
 
-  const res = await fetch(`${baseUrl}/api/about`, {
-    next: { revalidate: 300 }, // revalida cada 5min (300s)
-  });
+export async function fetchAbout(): Promise<AboutContent> {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+  const res = await fetch(`${baseUrl}/api/about`, { next: { revalidate: 300 } });
 
   if (!res.ok) {
-    throw new Error(`Error al obtener datos de contacto (${res.status})`);
+    throw new Error("Failed to fetch About data");
   }
 
   return res.json();
