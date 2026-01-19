@@ -1,4 +1,3 @@
-// data/products_list.ts
 import type { ProductListItem } from "@/types/product";
 
 export const productsList: ProductListItem[] = [

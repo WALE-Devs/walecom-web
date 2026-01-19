@@ -1,7 +1,6 @@
-// data/contact.ts
-import type { ContactContent } from "@/types/contact";
+import type { Content } from "@/types/content";
 
-export const contactData: ContactContent = {
+export const contactData: Content = {
   id: 2,
   identifier: "contact",
   title: "Contáctanos",

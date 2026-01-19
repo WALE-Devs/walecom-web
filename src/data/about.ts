@@ -1,6 +1,6 @@
-import type { AboutContent } from "@/types/about";
+import type { Content } from "@/types/content";
 
-export const aboutData: AboutContent = {
+export const aboutData: Content = {
   id: 1,
   identifier: "about",
   title: "Sobre Nosotros",

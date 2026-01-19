@@ -1,11 +1,17 @@
 import { fetchAbout } from "@/lib/about";
 
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((v) => typeof v === "string");
+}
+
 export default async function AboutPage() {
   const about = await fetchAbout();
 
   const mission = about.blocks.find((b) => b.identifier === "mission");
   const vision = about.blocks.find((b) => b.identifier === "vision");
   const values = about.blocks.find((b) => b.identifier === "values");
+
+  const valuesItems = isStringArray(values?.items) ? values!.items : [];
 
   return (
     <section className="max-w-6xl mx-auto px-6 py-16 space-y-24">
@@ -38,7 +44,7 @@ export default async function AboutPage() {
 
           {/* Value chips */}
           <div className="flex flex-wrap justify-center gap-4">
-            {values.items.map((item, index) => (
+            {valuesItems.map((item, index) => (
               <span
                 key={index}
                 className="px-5 py-2 bg-blue-600 text-white rounded-full text-sm font-medium shadow-md hover:bg-blue-700 transition"

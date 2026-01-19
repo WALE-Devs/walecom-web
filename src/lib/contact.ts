@@ -1,6 +1,6 @@
-import type { ContactContent } from "@/types/contact";
+import type { Content } from "@/types/content";
 
-export async function fetchContact(): Promise<ContactContent>  {
+export async function fetchContact(): Promise<Content>  {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
   const res = await fetch(`${baseUrl}/api/contact`, {

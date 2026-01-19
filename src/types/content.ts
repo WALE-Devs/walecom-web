@@ -1,21 +1,21 @@
 
-export interface AboutBlock {
+export interface ContentBlock {
   id: number;
   content: number;
   identifier: string;
   title: string;
   subtitle: string;
   content_text: string;
-  items: string[];
+  items: unknown;
   image_path: string | null;
-  image_url: string | null;
+  image_url?: string | null;
   order: number;
   is_active: boolean;
   type: string;
   language: string;
 }
 
-export interface AboutContent {
+export interface Content {
   id: number;
   identifier: string;
   title: string;
@@ -23,5 +23,5 @@ export interface AboutContent {
   language: string;
   is_active: boolean;
   last_updated: string;
-  blocks: AboutBlock[];
+  blocks: ContentBlock[];
 }

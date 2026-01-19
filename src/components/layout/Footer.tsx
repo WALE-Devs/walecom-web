@@ -2,6 +2,9 @@ import Link from "next/link";
 import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
 import { fetchContact } from "@/lib/contact";
 
+function isStringRecord(value: unknown): value is Record<string, string> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
 
 export default async function Footer() {
   const contact = await fetchContact();
@@ -9,28 +12,31 @@ export default async function Footer() {
   const info = contact.blocks.find((b) => b.identifier === "information");
   const social = contact.blocks.find((b) => b.identifier === "social");
 
+  const infoItems = isStringRecord(info?.items) ? info!.items : {};
+  const socialItems = isStringRecord(social?.items) ? social!.items : {};
+
   return (
     <footer className="bg-gray-50 border-t border-gray-200 mt-12">
       <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-gray-700">
         {/* Contact information */}
         {info && (
           <div className="space-y-3 mb-10">
-            {info.items.address && (
+            {infoItems.address && (
               <p className="flex justify-center items-center gap-2 text-gray-700">
                 <MapPin className="text-blue-600" size={18} />
-                {info.items.address}
+                {infoItems.address}
               </p>
             )}
-            {info.items.phone && (
+            {infoItems.phone && (
               <p className="flex justify-center items-center gap-2 text-gray-700">
                 <Phone className="text-blue-600" size={18} />
-                {info.items.phone}
+                {infoItems.phone}
               </p>
             )}
-            {info.items.email && (
+            {infoItems.email && (
               <p className="flex justify-center items-center gap-2 text-gray-700">
                 <Mail className="text-blue-600" size={18} />
-                {info.items.email}
+                {infoItems.email}
               </p>
             )}
           </div>
@@ -39,9 +45,9 @@ export default async function Footer() {
         {/* Social media */}
         {social && (
           <div className="flex justify-center gap-6 mt-6">
-            {social.items.instagram && (
+            {socialItems.instagram && (
               <a
-                href={social.items.instagram}
+                href={socialItems.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 transition"
@@ -49,9 +55,9 @@ export default async function Footer() {
                 <Instagram size={22} />
               </a>
             )}
-            {social.items.facebook && (
+            {socialItems.facebook && (
               <a
-                href={social.items.facebook}
+                href={socialItems.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 transition"
