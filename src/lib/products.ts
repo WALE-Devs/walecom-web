@@ -1,40 +1,56 @@
-// lib/products.ts
-import { getImageUrl } from "./media";
-import { productsList } from "@/data/products_list";
-import { productsDetail } from "@/data/products_detail";
+// src/lib/products.ts
 import type { ProductListItem, ProductDetail } from "@/types/product";
+import { getImageUrl } from "./media";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 /**
- * Simula fetch de productos (lista)
+ * Fetch list of products from the Django API
  */
 export async function fetchProducts(): Promise<ProductListItem[]> {
-  // En un futuro, puedes reemplazar esto por un fetch real:
-  // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
-  // const data = await res.json();
+    const res = await fetch(`${API_URL}/products/`, {
+        next: { revalidate: 300 }, // Revalidate every 5 minutes
+    });
 
-  return productsList.map((p) => ({
-    ...p,
-    image_url: getImageUrl(p.image_path),
-  }));
+    if (!res.ok) {
+        throw new Error(`Failed to fetch product list: ${res.status}`);
+    }
+
+    const data: ProductListItem[] = await res.json();
+
+    // Normalize image URLs if backend sends relative paths
+    return data.map((p) => ({
+        ...p,
+        image_url: p.image_url || getImageUrl(p.image_path),
+    }));
 }
 
 /**
- * Simula fetch de detalle de producto
+ * Fetch detailed product info by slug from the Django API
  */
 export async function fetchProductBySlug(slug: string): Promise<ProductDetail | null> {
-  const product = productsDetail.find((p) => p.slug === slug);
-  if (!product) return null;
+    const res = await fetch(`${API_URL}/products/${slug}/`, {
+        next: { revalidate: 300 },
+    });
 
-  return {
-    ...product,
-    main_image_url: getImageUrl(product.main_image_path),
-    images: product.images.map((img) => ({
-      ...img,
-      image_url: getImageUrl(img.image_path),
-    })),
-    related_products: product.related_products.map((r) => ({
-      ...r,
-      image_url: getImageUrl(r.image_path),
-    })),
-  };
+    if (res.status === 404) return null;
+    if (!res.ok) {
+        throw new Error(`Failed to fetch product detail for slug "${slug}": ${res.status}`);
+    }
+
+    const product: ProductDetail = await res.json();
+
+    // Normalize images
+    return {
+        ...product,
+        main_image_url: product.main_image_url || getImageUrl(product.main_image_path),
+        images: product.images.map((img) => ({
+            ...img,
+            image_url: img.image_url || getImageUrl(img.image_path),
+        })),
+        related_products: product.related_products.map((r) => ({
+            ...r,
+            image_url: r.image_url || getImageUrl(r.image_path),
+        })),
+    };
 }
