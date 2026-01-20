@@ -1,15 +1,14 @@
 // src/lib/products.ts
+import { apiUrl } from "@/lib/api";
 import type { ProductListItem, ProductDetail } from "@/types/product";
 import { getImageUrl } from "./media";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 /**
  * Fetch list of products from the Django API
  */
 export async function fetchProducts(): Promise<ProductListItem[]> {
-    const res = await fetch(`${API_URL}/products/`, {
-        next: { revalidate: 300 }, // Revalidate every 5 minutes
+    const res = await fetch(apiUrl("/products/"), {
+        next: { revalidate: 300 },
     });
 
     if (!res.ok) {
@@ -29,7 +28,7 @@ export async function fetchProducts(): Promise<ProductListItem[]> {
  * Fetch detailed product info by slug from the Django API
  */
 export async function fetchProductBySlug(slug: string): Promise<ProductDetail | null> {
-    const res = await fetch(`${API_URL}/products/${slug}/`, {
+    const res = await fetch(apiUrl(`/products/${slug}/`), {
         next: { revalidate: 300 },
     });
 
