@@ -20,7 +20,7 @@ export async function fetchProducts(): Promise<ProductListItem[]> {
     // Normalize image URLs if backend sends relative paths
     return data.map((p) => ({
         ...p,
-        image_url: p.image_url || getImageUrl(p.image_path),
+        image_url: getImageUrl(p.image_path),
     }));
 }
 
@@ -42,14 +42,14 @@ export async function fetchProductBySlug(slug: string): Promise<ProductDetail | 
     // Normalize images
     return {
         ...product,
-        main_image_url: product.main_image_url || getImageUrl(product.main_image_path),
+        main_image_url: getImageUrl(product.main_image_path),
         images: product.images.map((img) => ({
             ...img,
-            image_url: img.image_url || getImageUrl(img.image_path),
+            image_url: getImageUrl(img.image_path),
         })),
         related_products: product.related_products.map((r) => ({
             ...r,
-            image_url: r.image_url || getImageUrl(r.image_path),
+            image_url: getImageUrl(r.image_path),
         })),
     };
 }
