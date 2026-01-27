@@ -1,0 +1,12 @@
+services:
+
+    frontend:
+        container_name: wale-ecommerce-frontend-dev
+        build:
+            target: development
+        env_file:
+            - .env.local
+        environment:
+            - NODE_ENV=development
+        ports:
+            - "3000:3000"
