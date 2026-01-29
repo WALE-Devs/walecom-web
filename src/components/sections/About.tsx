@@ -1,9 +1,5 @@
 import { fetchAbout } from "@/lib/about";
 
-function isStringArray(value: unknown): value is string[] {
-  return Array.isArray(value) && value.every((v) => typeof v === "string");
-}
-
 export default async function AboutPage() {
   const about = await fetchAbout();
 
@@ -11,7 +7,8 @@ export default async function AboutPage() {
   const vision = about.blocks.find((b) => b.identifier === "vision");
   const values = about.blocks.find((b) => b.identifier === "values");
 
-  const valuesItems = isStringArray(values?.items) ? values!.items : [];
+  // TypeScript now knows items can be string[] | Record<string, unknown>
+  const valuesItems = values && Array.isArray(values.items) ? values.items : [];
 
   return (
     <section className="max-w-6xl mx-auto px-6 py-16 space-y-24">

@@ -29,7 +29,7 @@ export default function HeroSlider() {
   // Extract active and sorted slides
   const slides =
     slider?.blocks
-      .filter((b) => b.is_active && b.image_url)
+      .filter((b) => b.is_active && b.image)
       .sort((a, b) => a.order - b.order) || [];
 
   // Auto-slide
@@ -73,7 +73,7 @@ export default function HeroSlider() {
         {slides.map((slide) => (
           <div key={slide.id} className="relative flex-shrink-0 w-full h-[70vh]">
             <Image
-              src={slide.image_url!}
+              src={slide.image!}
               alt={slide.title || "Banner"}
               fill
               className="object-cover"

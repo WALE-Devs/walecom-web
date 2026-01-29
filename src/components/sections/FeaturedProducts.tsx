@@ -12,7 +12,7 @@ export default async function FeaturedProducts() {
             className="border rounded-xl p-4 shadow-sm hover:shadow-md transition"
           >
             <img
-              src={product.image_url}
+              src={product.image}
               alt={product.name}
               className="w-full h-56 object-cover rounded-lg mb-4"
             />

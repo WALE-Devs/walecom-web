@@ -13,7 +13,7 @@ export default async function ProductPage({
   const product: ProductDetail | null = await fetchProductBySlug(slug);
   if (!product) notFound();
 
-  const mainImage = product.main_image_url || product.images[0]?.image_url || "/images/placeholder.jpg";
+  const mainImage = product.main_image || product.images[0]?.image || "/images/placeholder.jpg";
   const additionalImages = product.images.slice(1);
 
   return (
@@ -41,7 +41,7 @@ export default async function ProductPage({
                   className="relative w-24 h-24 flex-shrink-0 border rounded-md overflow-hidden hover:opacity-80 transition"
                 >
                   <Image
-                    src={img.image_url}
+                    src={img.image}
                     alt={`${product.name} - imagen ${img.position}`}
                     fill
                     className="object-cover"

@@ -5,20 +5,18 @@ export interface ProductListItem {
   slug: string;
   description: string;
   base_sku: string;
-  category: string | null;
+  category: number | null;
   currency: string;
   default_price: string;
   default_stock: number;
-  image_path: string;
-  image_url: string;
+  image: string;
   tags: string[];
 }
 
 export interface ProductImage {
   id: number;
   product: number;
-  image_path: string;
-  image_url: string;
+  image: string;
   position: number;
 }
 
@@ -36,8 +34,7 @@ export interface RelatedProduct {
   slug: string;
   price: string;
   currency: string;
-  image_path: string;
-  image_url: string;
+  image: string;
 }
 
 export interface ProductDetail {
@@ -46,12 +43,11 @@ export interface ProductDetail {
   slug: string;
   description: string;
   base_sku: string;
-  category: string | null;
+  category: number | null;
   currency: string;
   default_price: string;
   default_stock: number;
-  main_image_path: string;
-  main_image_url: string;
+  main_image: string;
   images: ProductImage[];
   variants: ProductVariant[];
   related_products: RelatedProduct[];

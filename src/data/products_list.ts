@@ -11,8 +11,7 @@ export const productsList: ProductListItem[] = [
     currency: "PEN",
     default_price: "59.90",
     default_stock: 0,
-    image_path: "products/bte.jpg",
-    image_url: "http://127.0.0.1:8000/media/products/bte.jpg",
+    image: "http://127.0.0.1:9000/media/products/bte.jpg",
     tags: ["accesorios", "eco", "bolso"],
   },
   {
@@ -25,8 +24,7 @@ export const productsList: ProductListItem[] = [
     currency: "PEN",
     default_price: "199.90",
     default_stock: 0,
-    image_path: "products/zun.jpg",
-    image_url: "http://127.0.0.1:8000/media/products/zun.jpg",
+    image: "http://127.0.0.1:8000/media/products/zun.jpg",
     tags: ["calzado", "urbano"],
   },
   {
@@ -39,8 +37,7 @@ export const productsList: ProductListItem[] = [
     currency: "PEN",
     default_price: "49.90",
     default_stock: 0,
-    image_path: "products/cbb.png",
-    image_url: "http://127.0.0.1:8000/media/products/cbb.png",
+    image: "http://127.0.0.1:8000/media/products/cbb.png",
     tags: ["ropa", "básico", "algodón"],
   },
   {
@@ -53,8 +50,7 @@ export const productsList: ProductListItem[] = [
     currency: "PEN",
     default_price: "169.90",
     default_stock: 0,
-    image_path: "products/clb.jpg",
-    image_url: "http://127.0.0.1:8000/media/products/clb.jpg",
+    image: "http://127.0.0.1:8000/media/products/clb.jpg",
     tags: ["ropa", "chaqueta", "unisex"],
   },
   {
@@ -67,8 +63,7 @@ export const productsList: ProductListItem[] = [
     currency: "PEN",
     default_price: "259.90",
     default_stock: 0,
-    image_path: "products/zcb1.jpeg",
-    image_url: "http://127.0.0.1:8000/media/products/zcb1.jpeg",
+    image: "http://127.0.0.1:8000/media/products/zcb1.jpeg",
     tags: ["calzado", "urbano"],
   },
 ];

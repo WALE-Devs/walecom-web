@@ -6,9 +6,8 @@ export interface ContentBlock {
   title: string;
   subtitle: string;
   content_text: string;
-  items: unknown;
-  image_path: string | null;
-  image_url?: string | null;
+  items: string[] | Record<string, unknown>; // Can be array or object depending on content type
+  image: string | null; // Backend uses 'image' (full URL)
   order: number;
   is_active: boolean;
   type: string;

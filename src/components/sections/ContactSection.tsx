@@ -1,6 +1,7 @@
 import { fetchContact } from "@/lib/contact";
 import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
 
+// Type guard to check if items is a record of strings
 function isStringRecord(value: unknown): value is Record<string, string> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
@@ -11,6 +12,7 @@ export default async function ContactSection() {
   const info = contact.blocks.find((b) => b.identifier === "information");
   const social = contact.blocks.find((b) => b.identifier === "social");
 
+  // Use type guard to narrow the type
   const infoItems = isStringRecord(info?.items) ? info!.items : {};
   const socialItems = isStringRecord(social?.items) ? social!.items : {};
 
