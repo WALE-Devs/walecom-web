@@ -14,8 +14,12 @@ export async function fetchProducts(): Promise<ProductListItem[]> {
         throw new Error(`Failed to fetch product list: ${res.status}`);
     }
 
-    const data: ProductListItem[] = await res.json();
-    return data;
+    const data = await res.json();
+    // Handle paginated response
+    if (data && typeof data === 'object' && 'results' in data) {
+        return data.results as ProductListItem[];
+    }
+    return data as ProductListItem[];
 }
 
 /**
