@@ -54,3 +54,22 @@ export async function refreshAccessToken(refresh: string): Promise<{ access: str
 
     return res.json();
 }
+
+/**
+ * Register a new user.
+ * Endpoint: POST /api/auth/register/
+ */
+export async function register(data: any): Promise<{ user: any; message: string }> {
+    const res = await fetch(apiUrl("/auth/register/"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.detail || errorData.message || `Registration failed: ${res.status}`);
+    }
+
+    return res.json();
+}
