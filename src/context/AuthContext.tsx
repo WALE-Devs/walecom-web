@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { UserProfile } from "@/types/user";
-import { fetchProfile, login as loginService, refreshAccessToken, updateProfile } from "@/lib/auth";
+import { fetchProfile, login as loginService, refreshAccessToken } from "@/lib/auth";
 
 interface AuthContextType {
     user: UserProfile | null;
@@ -43,22 +43,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 try {
                     const profile = await fetchProfile(token);
                     setUser(profile);
-                } catch (error) {
-                    console.error("Failed to fetch profile on init:", error);
-                    const refresh = localStorage.getItem("refresh_token");
-                    if (refresh) {
-                        try {
-                            const { access } = await refreshAccessToken(refresh);
-                            localStorage.setItem("access_token", access);
-                            const profile = await fetchProfile(access);
-                            setUser(profile);
-                        } catch (refreshError) {
-                            console.error("Token refresh failed:", refreshError);
-                            logout();
+                } catch (error: any) {
+                    // If it's a 401, we try to refresh before logging it as a failure
+                    if (error.message?.includes("401")) {
+                        const refresh = localStorage.getItem("refresh_token");
+                        if (refresh) {
+                            try {
+                                const { access } = await refreshAccessToken(refresh);
+                                localStorage.setItem("access_token", access);
+                                const profile = await fetchProfile(access);
+                                setUser(profile);
+                                setLoading(false);
+                                return; // Success after refresh
+                            } catch (refreshError) {
+                                console.error("Token refresh failed:", refreshError);
+                            }
                         }
                     } else {
-                        logout();
+                        console.error("Failed to fetch profile on init:", error);
                     }
+                    logout();
                 }
             }
             setLoading(false);

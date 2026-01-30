@@ -1,4 +1,4 @@
-// src/lib/products.ts
+// src/lib/products.ts 
 import { apiUrl } from "@/lib/api";
 import type { ProductListItem, ProductDetail, Category } from "@/types/product";
 
