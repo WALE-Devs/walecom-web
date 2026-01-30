@@ -6,7 +6,7 @@ services:
         build:
             target: development
         env_file:
-            - .env.local
+            - .env.dev
         environment:
             - NODE_ENV=development
         ports:
