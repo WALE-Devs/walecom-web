@@ -12,13 +12,17 @@ export const metadata: Metadata = {
   description: "Explora nuestros productos destacados y descubre lo mejor de nuestra colección.",
 };
 
+import { AuthProvider } from "@/context/AuthContext";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" suppressHydrationWarning>
       <body className={`${inter.className} bg-white text-gray-800`} suppressHydrationWarning>
-        <Header />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

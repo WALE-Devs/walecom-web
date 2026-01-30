@@ -3,10 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -23,28 +25,32 @@ export default function Header() {
         </Link>
 
         {/* NAV LINKS */}
-        <ul className="hidden md:flex gap-6 text-gray-700 font-medium">
-          <li>
-            <Link href="/" className="hover:text-blue-600 transition">
-              Inicio
+        <div className="hidden md:flex items-center gap-8">
+          <ul className="flex gap-6 text-gray-700 font-medium">
+            <li>
+              <Link href="/" className="hover:text-blue-600 transition">
+                Inicio
+              </Link>
+            </li>
+            <li>
+              <Link href="/catalog" className="hover:text-blue-600 transition">
+                Catálogo
+              </Link>
+            </li>
+            <li>
+              <Link href="/about" className="hover:text-blue-600 transition">
+                Nosotros
+              </Link>
+            </li>
+          </ul>
+
+          <div className="flex items-center gap-4 border-l pl-8">
+            <Link href={user ? "/profile" : "/login"} className="text-gray-700 hover:text-blue-600 transition flex items-center gap-1">
+              <User size={20} />
+              <span className="text-sm">{user ? user.first_name : "Entrar"}</span>
             </Link>
-          </li>
-          <li>
-            <Link href="/catalog" className="hover:text-blue-600 transition">
-              Catálogo
-            </Link>
-          </li>
-          <li>
-            <Link href="#contacto" className="hover:text-blue-600 transition">
-              Contacto
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className="hover:text-blue-600 transition">
-              Nosotros
-            </Link>
-          </li>
-        </ul>
+          </div>
+        </div>
 
         {/* MENU HAMBURGER (MOBILE) */}
         <button
@@ -78,7 +84,7 @@ export default function Header() {
               <Link href="/about" onClick={() => setMenuOpen(false)}>
                 Nosotros
               </Link>
-          </li>
+            </li>
           </ul>
         </div>
       )}
