@@ -2,13 +2,14 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { UserProfile } from "@/types/user";
-import { fetchProfile, login as loginService, refreshAccessToken } from "@/lib/auth";
+import { fetchProfile, login as loginService, refreshAccessToken, updateProfile } from "@/lib/auth";
 
 interface AuthContextType {
     user: UserProfile | null;
     loading: boolean;
     login: (email: string, password: string) => Promise<void>;
     logout: () => void;
+    refreshUser: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -21,6 +22,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
         setUser(null);
+    };
+
+    const refreshUser = async () => {
+        const token = localStorage.getItem("access_token");
+        if (token) {
+            try {
+                const profile = await fetchProfile(token);
+                setUser(profile);
+            } catch (error) {
+                console.error("Failed to refresh profile:", error);
+            }
+        }
     };
 
     useEffect(() => {
@@ -62,7 +75,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, logout }}>
+        <AuthContext.Provider value={{ user, loading, login, logout, refreshUser }}>
             {children}
         </AuthContext.Provider>
     );

@@ -73,3 +73,25 @@ export async function register(data: any): Promise<{ user: any; message: string 
 
     return res.json();
 }
+
+/**
+ * Update the current user's profile.
+ * Endpoint: PATCH /api/auth/profile/
+ */
+export async function updateProfile(token: string, data: Partial<UserProfile>): Promise<UserProfile> {
+    const res = await fetch(apiUrl("/auth/profile/"), {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.detail || errorData.message || `Profile update failed: ${res.status}`);
+    }
+
+    return res.json();
+}
