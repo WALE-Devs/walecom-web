@@ -3,6 +3,7 @@ services:
     frontend:
         container_name: walecom-web
         image: walecom-web:dev
+        restart: unless-stopped
         build:
             target: development
         env_file:
