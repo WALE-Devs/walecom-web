@@ -1,8 +1,8 @@
 services:
 
     frontend:
-        container_name: wale-ecom-front-dev
-        image: wale-ecom-front:dev
+        container_name: walecom-web
+        image: walecom-web:dev
         build:
             target: development
         env_file:
