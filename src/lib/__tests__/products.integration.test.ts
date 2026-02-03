@@ -63,7 +63,7 @@ describe('Products API Integration Tests', () => {
   describe('fetchProductBySlug', () => {
     it('should fetch product detail from real backend', async () => {
       // Use a product slug that we know exists
-      const product = await fetchProductBySlug('zapatillas-urbanas-blancas')
+      const product = await fetchProductBySlug('zapatilla-urbana-negra')
 
       expect(product).not.toBeNull()
       expect(product).toHaveProperty('id')
@@ -83,7 +83,7 @@ describe('Products API Integration Tests', () => {
     })
 
     it('should fetch product with complete detail structure', async () => {
-      const product = await fetchProductBySlug('zapatillas-urbanas-blancas')
+      const product = await fetchProductBySlug('zapatilla-urbana-negra')
 
       expect(product).not.toBeNull()
 
@@ -136,14 +136,14 @@ describe('Products API Integration Tests', () => {
     })
 
     it('should fetch a specific product with correct data', async () => {
-      const product = await fetchProductBySlug('zapatillas-urbanas-blancas')
+      const product = await fetchProductBySlug('zapatilla-urbana-negra')
 
       expect(product).not.toBeNull()
-      expect(product!.name).toBe('Zapatillas Urbanas Blancas')
-      expect(product!.slug).toBe('zapatillas-urbanas-blancas')
-      expect(product!.base_sku).toBe('ZUB')
+      expect(product!.name).toBe('Zapatilla Urbana Negra')
+      expect(product!.slug).toBe('zapatilla-urbana-negra')
+      expect(product!.base_sku).toBe('ZUN')
       expect(product!.currency).toBe('PEN')
-      expect(product!.default_price).toBe('259.90')
+      expect(product!.default_price).toBe('199.90')
     })
   })
 })
