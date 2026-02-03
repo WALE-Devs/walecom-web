@@ -11,4 +11,4 @@ services:
         environment:
             - NODE_ENV=development
         ports:
-            - "3000:3000"
+            - "${FRONTEND_PORT:-3000}:3000"
