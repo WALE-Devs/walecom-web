@@ -43,9 +43,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 try {
                     const profile = await fetchProfile(token);
                     setUser(profile);
-                } catch (error: any) {
+                } catch (error: unknown) {
                     // If it's a 401, we try to refresh before logging it as a failure
-                    if (error.message?.includes("401")) {
+                    const message = error instanceof Error ? error.message : String(error);
+                    if (message.includes("401")) {
                         const refresh = localStorage.getItem("refresh_token");
                         if (refresh) {
                             try {

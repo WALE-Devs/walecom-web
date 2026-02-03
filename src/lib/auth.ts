@@ -59,7 +59,7 @@ export async function refreshAccessToken(refresh: string): Promise<{ access: str
  * Register a new user.
  * Endpoint: POST /api/auth/register/
  */
-export async function register(data: Record<string, any>): Promise<{ user: Record<string, any>; message: string }> {
+export async function register(data: Record<string, unknown>): Promise<{ user: Record<string, unknown>; message: string }> {
     const res = await fetch(apiUrl("/auth/register/"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },

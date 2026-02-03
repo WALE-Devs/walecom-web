@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { fetchSlider } from "@/lib/slider";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -27,10 +27,13 @@ export default function HeroSlider() {
   }, []);
 
   // Extract active and sorted slides
-  const slides =
-    slider?.blocks
-      .filter((b) => b.is_active && b.image)
-      .sort((a, b) => a.order - b.order) || [];
+  const slides = useMemo(
+    () =>
+      slider?.blocks
+        .filter((b) => b.is_active && b.image)
+        .sort((a, b) => a.order - b.order) || [],
+    [slider]
+  );
 
   // Auto-slide
   useEffect(() => {

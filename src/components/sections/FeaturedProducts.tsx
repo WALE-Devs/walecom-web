@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { fetchProducts } from "@/lib/products";
 
 export default async function FeaturedProducts() {
@@ -11,9 +12,11 @@ export default async function FeaturedProducts() {
             key={product.id}
             className="border rounded-xl p-4 shadow-sm hover:shadow-md transition"
           >
-            <img
+            <Image
               src={product.image}
               alt={product.name}
+              width={400}
+              height={224}
               className="w-full h-56 object-cover rounded-lg mb-4"
             />
             <h3 className="font-medium text-lg">{product.name}</h3>

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
 import { fetchContact } from "@/lib/contact";
 

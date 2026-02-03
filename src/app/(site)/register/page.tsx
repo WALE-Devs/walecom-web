@@ -50,8 +50,9 @@ export default function RegisterPage() {
             });
             // Optionally redirect to login after a few seconds
             setTimeout(() => router.push("/login"), 3000);
-        } catch (err: any) {
-            setError(err.message || "Error al registrar el usuario.");
+        } catch (err: unknown) {
+            const message = err instanceof Error ? err.message : "Error al registrar el usuario.";
+            setError(message);
         } finally {
             setLoading(false);
         }

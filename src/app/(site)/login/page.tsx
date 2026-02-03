@@ -18,7 +18,7 @@ export default function LoginPage() {
         try {
             await login(email, password);
             router.push("/");
-        } catch (err: any) {
+        } catch {
             setError("Error al iniciar sesión. Por favor, verifica tus credenciales.");
         }
     };
