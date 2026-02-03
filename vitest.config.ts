@@ -10,7 +10,15 @@ export default defineConfig({
     setupFiles: ['./src/test/setup.ts'],
 
     // Enable watch mode (re-runs automatically when saving)
-    watch: true
+    watch: true,
+
+    // Exclude integration tests from normal test runs
+    // Integration tests require backend running and should be executed separately
+    exclude: [
+      'node_modules',
+      'dist',
+      '**/*.integration.test.ts',
+    ],
   },
 
   // Resolve configuration for aliases
