@@ -9,8 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest",
-    "test:run": "vitest run",
-    "test:integration": "vitest run **/*.integration.test.ts"
+    "test:unit": "vitest run --exclude '**/*.integration.test.ts'"
   },
   "dependencies": {
     "lucide-react": "^0.562.0",

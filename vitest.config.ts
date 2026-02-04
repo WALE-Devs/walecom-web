@@ -16,8 +16,7 @@ export default defineConfig({
     // Integration tests require backend running and should be executed separately
     exclude: [
       'node_modules',
-      'dist',
-      '**/*.integration.test.ts',
+      'dist'
     ],
   },
 
